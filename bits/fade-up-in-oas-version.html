@@ -1,0 +1,191 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Fade Ins</title>
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<style>
+
+.fiftyfifty {
+  display: flex;
+  justify-content: space-between;
+}
+
+.fiftyfifty .basic {
+  flex-basis: 50%;
+}
+.fiftyfifty .basic:last-of-type {
+  text-align: right;
+}
+
+.js .to_fade_up, 
+.js .to_fade_from_left, 
+.js .to_fade_from_right {
+  visibility: hidden;
+}
+.js .fade_up {
+  visibility: visible;
+  -ms-animation: fadeUp 2s; /* Internet Explorer*/
+  animation: fadeUp 2s; 
+}
+.js .fade_from_left {
+  visibility: visible;
+  -ms-animation: fadeFromLeft 1s; /* Internet Explorer*/
+  animation: fadeFromLeft 1s; 
+}
+.js .fade_from_right {
+  visibility: visible;
+  -ms-animation: fadeFromRight 1s; /* Internet Explorer*/
+  animation: fadeFromRight 1s; 
+}
+
+
+@keyframes fadeUp {
+  0% {
+    filter: alpha(opacity=0);
+    opacity: .1;
+    transform: translateY(100px);
+  }
+  100% {
+    filter: alpha(opacity=100);
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes fadeFromLeft {
+  0% {
+    filter: alpha(opacity=0);
+    opacity: .1;
+    transform: translateX(-100%);
+  }
+  100% {
+    filter: alpha(opacity=100);
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+@keyframes fadeFromRight {
+  0% {
+    filter: alpha(opacity=0);
+    opacity: .1;
+    transform: translateX(100%);
+  }
+  100% {
+    filter: alpha(opacity=100);
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+</style>
+
+</head>
+<body>
+
+  <div data-aos="fade-up"
+    data-aos-offset="100"
+    data-aos-delay="50"
+    data-aos-duration="1000" 
+    data-aos-once="true" 
+    data-aos-anchor-placement="top-center">
+    <h1>Fade in and up!</h1>
+    <h3>This effect uses the following:</h3>
+    <ul>
+      <li>JS that adds the class 'js' to the html tag (don't show the fade up/in if there is no javascript</li>
+      <li>CSS that describes the fade up/in transition animation (edit as needed) and only works when the .js class exists</li>
+      <li>jQuery</li>
+      <li>Waypoints, which can tell when an element has appeared on the screen while scrolling down a page (there are other js tools that could be used instead)</li>
+      <li>the JS to call when an element with a class "to_fade_up" has come into view</li>
+      <li>So once the JS, jQuery, Waypoints, and CSS have been added to a site, you only need to add the class "to_fade_up" to anything you want to fade in</li>
+      <li>in the waypoint function, you will see a line: <em>offset: '75%'</em><br>
+      that number controls how far down the screen the content should be when the effect is called.</li>
+    </ul>
+    <p>Scroll down to see the effect one more time. Otherwise reload, it only runs the first time you scroll down!</p>
+  </div>
+
+  <div style="margin-top: 110vh; margin-bottom: 100vh;" >
+    <div data-aos="fade-up"
+    data-aos-offset="100"
+    data-aos-delay="50"
+    data-aos-duration="1000" 
+    data-aos-once="true" 
+    data-aos-anchor-placement="top-center">
+      <h1>Fade in and up again!</h1>
+      <p>here is</p>
+      <p>a bunch of</p>
+      <p>more content</p>
+    </div>
+          
+  </div>
+  <div style="margin-top: 50vh; margin-bottom: 50vh;">
+    <div class="fiftyfifty">
+      <div class="basic"
+      data-aos="slide-right"
+      data-aos-offset="100"
+      data-aos-delay="50"
+      data-aos-duration="1000" 
+      data-aos-once="true" 
+      data-aos-anchor-placement="top-center">
+        <h1>Fade in and from the left this time!</h1>
+        <p>here is</p>
+        <p>a bunch of</p>
+        <p>more content</p>
+      </div>
+      <div class="basic"
+      data-aos="slide-left"
+      data-aos-delay="50"
+      data-aos-duration="1000" 
+      data-aos-once="true" 
+      data-aos-anchor-placement="top-center">
+        <h1>Fade in and from the right this time!</h1>
+        <p>here is</p>
+        <p>a bunch of</p>
+        <p>more content</p>
+      </div>
+    </div>
+
+    
+          
+  </div>
+
+
+
+
+
+
+<!--   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>--> 
+
+
+<script>
+
+var root = document.getElementsByTagName( 'html' )[0]; // '0' to assign the first (and only `HTML` tag)
+root.setAttribute( 'class', 'js' );
+
+  
+
+  /* $(".to_fade_up").waypoint(function(){
+    $(this[0,'element']).addClass("fade_up");
+  }, {
+    triggerOnce: true,
+    offset: '75%'
+  });
+  $(".to_fade_from_left").waypoint(function(){
+    $(this[0,'element']).addClass("fade_from_left");
+  }, {
+    triggerOnce: true,
+    offset: '75%'
+  });
+  $(".to_fade_from_right").waypoint(function(){
+    $(this[0,'element']).addClass("fade_from_right");
+  }, {
+    triggerOnce: true,
+    offset: '75%'
+  }); */
+</script>
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>
+  AOS.init();
+</script>
+</body>
+</html>
