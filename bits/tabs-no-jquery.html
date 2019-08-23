@@ -1,0 +1,143 @@
+<!doctype html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tabs, using jQuery</title>
+<style>
+    body {font-family: arial, sans-serif;}
+    .tab-wrapper {
+        max-width: 400px;
+        margin: 0 auto;
+    }
+    .product-info-tab-links {
+        list-style: none;
+        margin: 0 0 0 .75rem;
+        padding: 0;
+        position: relative;
+        z-index: 2;
+        display: flex;
+    }
+    .product-info-tab-links li {
+        margin-bottom: -1px;
+        margin-left: -1px;
+    }
+    .product-info-tab-links li a {
+        display: block;
+        padding: .5rem 1rem;
+        border: #999 solid 1px;
+        border-bottom: none;
+        /*border-top-left-radius: 4px;
+        border-top-right-radius: 4px;*/
+        text-decoration: none;
+        position: relative;
+    }
+    .product-info-tab-links li a.active {
+        border-color: #000;
+        background-color: #e1f9ff;
+        z-index: 3;
+    }
+    .product-info-tab {
+        display: none;
+        border: #999 solid 1px;
+        padding: 1em;
+        max-width: 400px;
+        background-color: #e1f9ff;
+        animation: .75s fadeIn linear;
+    }
+
+@keyframes fadeIn{
+    from{
+    opacity:0;
+    }
+    to{
+    opacity:1
+    }
+}
+</style>
+</head>
+<body>
+    <div class="tab-wrapper">
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+        <ul class="product-info-tab-links">
+            <li><a href="#" class="active" data-product-info-link="1">Features</a></li>
+            <li><a href="#" data-product-info-link="2">Shipping</a></li>
+            <li><a href="#" data-product-info-link="3">Misc</a></li>
+        </ul>
+        <div class="product-info-tab" data-product-info-tab="1" style="display: block;">
+            <p>hey, tab content 1</p>
+        </div>
+        <div class="product-info-tab" data-product-info-tab="2">
+            <p>ho, tab content 2</p>
+        </div>
+        <div class="product-info-tab" data-product-info-tab="3">
+            <p>some tab 3 content</p>
+        </div>
+    </div>
+    
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    
+    
+<script>
+/* bling.js */
+window.$ = document.querySelectorAll.bind(document);
+
+Node.prototype.on = window.on = function (name, fn) {
+  this.addEventListener(name, fn);
+}
+
+NodeList.prototype.__proto__ = Array.prototype;
+
+NodeList.prototype.on = NodeList.prototype.addEventListener = function (name, fn) {
+  this.forEach(function (elem, i) {
+    elem.on(name, fn);
+  });
+}
+
+
+$( "[data-product-info-link]" ).on('click', function() {
+    var tabNum = this.dataset.productInfoLink;
+    var tabItem = '[data-product-info-tab="' + tabNum +'"]';
+    var check = $(tabItem);
+    if ( !check[0].offsetParent) {
+        event.preventDefault();
+        $( "[data-product-info-link]" ).forEach(function(element) {
+            element.classList.remove('active');
+        });
+        this.classList.add('active');
+        $( "[data-product-info-tab]" ).forEach(function(element) {
+            element.style.display = 'none';
+        });
+        var theTab = $(tabItem);
+        theTab[0].style.display = 'block';
+    }
+});
+
+    /* $( "[data-product-info-link]" ).click(function(e) {
+        e.preventDefault();
+        var theLink = $(this);
+        var tabNum = $(this).data('product-info-link');
+        var tabItem = '[data-product-info-tab="' + tabNum +'"]';
+        var check = $(tabItem).is(':visible');
+
+        if ( !check ) {
+            var other = $('[data-product-info-link]').not(this).removeClass('active');
+            var fadeOutDone = $('[data-product-info-tab]').css('display','none');
+
+            $(tabItem).css('display','block');
+            $(theLink).addClass('active');
+        }
+    }); */
+
+
+
+</script>
+</body>
+</html>
